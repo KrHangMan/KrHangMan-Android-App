@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">KrHangman</string>
+    <string name="app_name">꼬들꼬들</string>
+    <string name="touch_to_game_start">터치하여 게임시작...</string>
+
+    <string name="welcome_message">처음 오셨군요!!! 게임을 진행할 닉네임을 입력해주세요</string>
+    <string name="nickname_decide_button">생성하기</string>
+    <string name="nickname_wrong_input">닉네임은 한글자 이상이어야 합니다.</string>
+
+    <string name="main_page_title">한글행맨</string>
+    <string name="main_page_game_start">게임시작</string>
+    <string name="main_page_rank">랭킹</string>
+    <string name="main_page_help">도움말</string>
+
+    <string name="rank_page_title">랭킹</string>
+    <string name="hello">나는 %2$s등 입니다.</string>
+
+
 </resources>

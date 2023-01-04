@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/Theme.KrHangman.Splash"
+        tools:context=".ui.MainActivity">
+
+
+        <TextView
+            android:id="@+id/main_page_title"
+            android:text="@string/main_page_title"
+            android:textColor="@color/black"
+            android:gravity="start"
+            android:padding="20dp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <LinearLayout
+            android:id="@+id/main_page_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+
+            app:layout_constraintTop_toBottomOf="@+id/main_page_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+            <Button
+                android:id="@+id/main_page_button_game_start"
+                style="@style/Main_Page_Button"
+                android:text="@string/main_page_game_start"
+                android:layout_margin="10dp"/>
+
+            <Button
+                android:id="@+id/main_page_button_rank"
+                style="@style/Main_Page_Button"
+                android:text="@string/main_page_rank"
+                android:layout_margin="10dp"/>
+            <Button
+                android:id="@+id/main_page_button_help"
+                style="@style/Main_Page_Button"
+                android:text="@string/main_page_help"
+                android:layout_margin="10dp"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
