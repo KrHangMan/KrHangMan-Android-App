@@ -28,13 +28,8 @@ class StartActivity : Activity() {
                     val first = pref.getBoolean(INITIAL_LAUNCH, false)
 
                     if (!first) {
-                        val editor = pref.edit()
-                        editor.putBoolean(INITIAL_LAUNCH, true)
-                        editor.apply()
-
                         val intent = LoginActivity.newIntent(this@StartActivity)
                         startActivity(intent)
-
                     } else {
                         val intent = MainActivity.newIntent(this@StartActivity)
                         startActivity(intent)

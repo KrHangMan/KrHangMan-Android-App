@@ -4,7 +4,7 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:fontFamily">@font/yet_hangle</item>
-
+        <item name="hintTextColor">@color/main_button</item>
 
 
         <item name="android:statusBarColor">@color/white</item>
