@@ -41,7 +41,10 @@
                 <EditText
                     android:id="@+id/login_page_nickname"
                     android:layout_width="match_parent"
+                    android:textAlignment="center"
+                    android:textColor="@color/main_button"
                     android:hint="@string/login_page_input_nickname_msg"
+                    android:textColorHint="@color/main_button"
                     android:layout_height="50dp"
                     android:layout_marginBottom="50dp"
                     />
@@ -50,6 +53,8 @@
                     android:id="@+id/login_page_button_submit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@color/main_button"
+                    android:textColor="@color/white"
                     android:text="@string/nickname_decide_button"
                     />
 
