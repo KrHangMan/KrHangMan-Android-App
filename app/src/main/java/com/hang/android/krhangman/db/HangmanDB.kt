@@ -6,8 +6,8 @@ import androidx.room.TypeConverters
 import com.hang.android.krhangman.model.User
 
 @Database(entities =[User::class],version=1)
-@TypeConverters(UserTypeConverter::class)
+@TypeConverters(HangmanTypeConverter::class)
 
 abstract class HangmanDB : RoomDatabase() {
-    abstract fun userDao():UserDao
+    abstract fun hangmanDao():HangmanDao
 }

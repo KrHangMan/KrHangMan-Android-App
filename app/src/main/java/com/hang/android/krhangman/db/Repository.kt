@@ -15,12 +15,12 @@ class Repository private constructor(context: Context){
         DATABASE_NAME
     ).build()
 
-    private val userDao=database.userDao()
+    private val hangmanDao=database.hangmanDao()
 
     fun getUser(): User{
         var user:User
         runBlocking{
-            user=userDao.getUser()
+            user=hangmanDao.getUser()
         }
 
         return user
@@ -29,7 +29,7 @@ class Repository private constructor(context: Context){
     @OptIn(DelicateCoroutinesApi::class)
     fun addUser(user:User){
         GlobalScope.launch(Dispatchers.IO){
-            userDao.addUser(user)
+            hangmanDao.addUser(user)
         }
     }
 

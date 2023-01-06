@@ -40,6 +40,12 @@ class LoginActivity : AppCompatActivity() {
 
         }
     }
+    fun checkNicknameValidate(){
+        /*
+            2글자 이상 20글자미만, 한글 영어 숫자, 특수문자 사용 x
+
+         */
+    }
 
 
 
