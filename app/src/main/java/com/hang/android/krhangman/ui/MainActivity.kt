@@ -16,19 +16,20 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-const val TAG="Main Activity"
+const val TAG = "Main Activity"
 
 class MainActivity : Activity() {
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding:ActivityMainBinding=DataBindingUtil.setContentView(this, R.layout.activity_main)
-        Log.d(TAG,"test")
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
+        Log.d(TAG, "test")
         GlobalScope.launch {
-            Log.d(TAG,Repository.get().getUser().toString())
+            Log.d(TAG, Repository.get().getUser().toString())
         }
 
-        binding.mainPageButtonRank.setOnClickListener{
+        binding.mainPageButtonRank.setOnClickListener {
             val intent = RankingActivity.newIntent(this@MainActivity)
             startActivity(intent)
         }
@@ -37,8 +38,7 @@ class MainActivity : Activity() {
     }
 
 
-
-    companion object{
+    companion object {
         fun newIntent(context: Context): Intent {
             return Intent(context, MainActivity::class.java)
         }

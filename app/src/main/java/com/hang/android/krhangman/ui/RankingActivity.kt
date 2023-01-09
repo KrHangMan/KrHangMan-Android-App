@@ -28,25 +28,27 @@ import com.hang.android.krhangman.setRankItems
 import com.hang.android.krhangman.vm.RankingActivityViewModel
 
 class RankingActivity : AppCompatActivity(), LifecycleOwner {
-    private val viewModel= RankingActivityViewModel()
+    private val viewModel = RankingActivityViewModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding:ActivityRankingBinding= DataBindingUtil.setContentView(this,
+        val binding: ActivityRankingBinding = DataBindingUtil.setContentView(
+            this,
             R.layout.activity_ranking
         )
 
-        binding.viewModel=viewModel
+        binding.viewModel = viewModel
 
-        binding.rankPageRecyclerView.adapter=RankAdapter(diffUtil).apply{submitList(viewModel.rankList.value)}
-        binding.rankPageRecyclerView.layoutManager=LinearLayoutManager(this)
+        binding.rankPageRecyclerView.adapter =
+            RankAdapter(diffUtil).apply { submitList(viewModel.rankList.value) }
+        binding.rankPageRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        viewModel.apply{
+        viewModel.apply {
             rankList.observe(
                 this@RankingActivity,
                 Observer {
-                    Log.d("rankObserver",it.toString())
+                    Log.d("rankObserver", it.toString())
                     (binding.rankPageRecyclerView.adapter as RankAdapter).submitList(it)
 
                 }
@@ -54,35 +56,29 @@ class RankingActivity : AppCompatActivity(), LifecycleOwner {
             myRank.observe(
                 this@RankingActivity,
                 Observer {
-                    Log.d("myRank",myRank.value.toString())
-                    binding.rankPageMyRank.text=getString(R.string.rank_page_my_rank,myRank.value!!.rank)
+                    Log.d("myRank", myRank.value.toString())
+                    binding.rankPageMyRank.text =
+                        getString(R.string.rank_page_my_rank, myRank.value!!.rank)
                 }
             )
-
 
 
         }
     }
 
 
+    inner class RankHolder(private val binding: ItemRankRecyclerBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-
-
-
-
-
-
-    inner class RankHolder(private val binding: ItemRankRecyclerBinding):
-        RecyclerView.ViewHolder(binding.root){
-
-            fun bind(rank:Rank){
-                binding.rank=rank
-            }
+        fun bind(rank: Rank) {
+            binding.rank = rank
+        }
 
 
     }
 
-    inner class RankAdapter(diffUtil: DiffUtil.ItemCallback<Rank>): ListAdapter<Rank,RankHolder>(diffUtil){
+    inner class RankAdapter(diffUtil: DiffUtil.ItemCallback<Rank>) :
+        ListAdapter<Rank, RankHolder>(diffUtil) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankHolder {
             val binding = ItemRankRecyclerBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -94,14 +90,11 @@ class RankingActivity : AppCompatActivity(), LifecycleOwner {
         }
 
         override fun onBindViewHolder(holder: RankHolder, position: Int) {
-            Log.d(TAG,"onBindViewHolder ${getItem(position)}")
+            Log.d(TAG, "onBindViewHolder ${getItem(position)}")
             holder.bind(getItem(position))
         }
 
     }
-
-
-
 
 
     companion object {

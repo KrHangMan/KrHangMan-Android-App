@@ -24,35 +24,39 @@ import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
 
-    private val viewModel: LoginActivityViewModel by lazy{
+    private val viewModel: LoginActivityViewModel by lazy {
         ViewModelProvider(owner = this@LoginActivity)[LoginActivityViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding:ActivityLoginBinding=DataBindingUtil.setContentView(this,
+        val binding: ActivityLoginBinding = DataBindingUtil.setContentView(
+            this,
             R.layout.activity_login
         )
 
-        binding.loginPageEditTextNickname.addTextChangedListener(object :TextWatcher{
+        binding.loginPageEditTextNickname.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
+
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (p0!!.length > 20){
-                    binding.loginPageEditTextNickname.error = getString(R.string.nickname_wrong_input_long)
+                if (p0!!.length > 20) {
+                    binding.loginPageEditTextNickname.error =
+                        getString(R.string.nickname_wrong_input_long)
                 }
             }
+
             override fun afterTextChanged(p0: Editable?) {
             }
 
         })
 
         binding.loginPageButtonSubmit.setOnClickListener {
-            val nicknameInput=binding.loginPageEditTextNickname.text.toString()
+            val nicknameInput = binding.loginPageEditTextNickname.text.toString()
 
-            val isValidateNickname=checkNicknameValidate(nicknameInput)
-            if(isValidateNickname){
-                val user= User(nickname = nicknameInput)
+            val isValidateNickname = checkNicknameValidate(nicknameInput)
+            if (isValidateNickname) {
+                val user = User(nickname = nicknameInput)
                 viewModel.requestAddUser(user)
             }
 
@@ -64,8 +68,8 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.addUserResponse.observe(
             this,
-            Observer {value->
-                if(value==HangmanApiFetchr.USER_INPUT_SUCCESS){
+            Observer { value ->
+                if (value == HangmanApiFetchr.USER_INPUT_SUCCESS) {
                     viewModel.addUser()
                     val pref = getSharedPreferences(INITIAL_LAUNCH, MODE_PRIVATE)
                     val editor = pref.edit()
@@ -74,8 +78,12 @@ class LoginActivity : AppCompatActivity() {
 
                     val intent = MainActivity.newIntent(this)
                     startActivity(intent)
-                }else{
-                    Toast.makeText(baseContext,getString(R.string.nickname_already_exist),Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        baseContext,
+                        getString(R.string.nickname_already_exist),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         )
@@ -85,27 +93,31 @@ class LoginActivity : AppCompatActivity() {
 
         return super.onCreateView(name, context, attrs)
     }
-    private fun checkNicknameValidate(nickname: String):Boolean{
+
+    private fun checkNicknameValidate(nickname: String): Boolean {
         /*
             2글자 이상 20글자미만, 한글 영어 숫자, 특수문자 사용 x
 
          */
 
-        if(nickname.length<2){
-            Toast.makeText(baseContext,R.string.nickname_wrong_input_short,Toast.LENGTH_SHORT).show()
+        if (nickname.length < 2) {
+            Toast.makeText(baseContext, R.string.nickname_wrong_input_short, Toast.LENGTH_SHORT)
+                .show()
             return false
         }
 
-        if(nickname.length>20){
-            Toast.makeText(baseContext,R.string.nickname_wrong_input_long,Toast.LENGTH_SHORT).show()
+        if (nickname.length > 20) {
+            Toast.makeText(baseContext, R.string.nickname_wrong_input_long, Toast.LENGTH_SHORT)
+                .show()
 
             return false
         }
 
-        val pattern= "^[ㄱ-ㅣ가-힣a-zA-Z0-9\\s]+$"
-        val p= Pattern.matches(pattern,nickname)
-        if(!p){
-            Toast.makeText(baseContext,R.string.nickname_wrong_input_special,Toast.LENGTH_SHORT).show()
+        val pattern = "^[ㄱ-ㅣ가-힣a-zA-Z0-9\\s]+$"
+        val p = Pattern.matches(pattern, nickname)
+        if (!p) {
+            Toast.makeText(baseContext, R.string.nickname_wrong_input_special, Toast.LENGTH_SHORT)
+                .show()
 
             return false
         }
@@ -114,10 +126,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-
-
-
-    companion object{
+    companion object {
 
         fun newIntent(context: Context): Intent {
             return Intent(context, LoginActivity::class.java)

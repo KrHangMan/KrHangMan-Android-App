@@ -10,22 +10,23 @@ import com.hang.android.krhangman.api.HangmanApi
 import com.hang.android.krhangman.api.HangmanApiFetchr
 import com.hang.android.krhangman.databinding.ActivityStartBinding
 
-const val INITIAL_LAUNCH="Initial Launch Check"
+const val INITIAL_LAUNCH = "Initial Launch Check"
 
 class StartActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
 
         super.onCreate(savedInstanceState)
-        val binding:ActivityStartBinding= DataBindingUtil.setContentView(this,R.layout.activity_start)
+        val binding: ActivityStartBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_start)
 
 
         binding.apply {
-            startPageText.apply{
-                val anim=AnimationUtils.loadAnimation(context, R.anim.game_start_animation)
+            startPageText.apply {
+                val anim = AnimationUtils.loadAnimation(context, R.anim.game_start_animation)
                 startAnimation(anim)
             }
-            startPage.apply{
+            startPage.apply {
                 setOnClickListener {
                     val pref = getSharedPreferences(INITIAL_LAUNCH, MODE_PRIVATE)
                     val first = pref.getBoolean(INITIAL_LAUNCH, false)
@@ -42,8 +43,6 @@ class StartActivity : Activity() {
             }
 
         }
-
-
 
 
     }

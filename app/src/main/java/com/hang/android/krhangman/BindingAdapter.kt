@@ -8,7 +8,6 @@ import com.hang.android.krhangman.ui.RankingActivity
 
 
 @BindingAdapter("setRankItems")
-fun setRankItems(recycler: RecyclerView, rankList:List<Rank>?){
-    Log.d("testb","in Binding: ${rankList}")
+fun setRankItems(recycler: RecyclerView, rankList: List<Rank>?) {
     (recycler?.adapter as? RankingActivity.RankAdapter)?.submitList(rankList)
 }

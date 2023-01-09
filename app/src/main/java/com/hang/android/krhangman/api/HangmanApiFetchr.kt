@@ -47,16 +47,16 @@ class HangmanApiFetchr {
         return responseRankData
     }
 
-    fun getMyRank(userName: String):LiveData<MyRank>{
+    fun getMyRank(userName: String): LiveData<MyRank> {
         val responseRankData: MutableLiveData<MyRank> = MutableLiveData()
         val rankRequest = hangmanApi.getMyRank(userName)
         rankRequest.enqueue(object : Callback<MyRank> {
             override fun onResponse(call: Call<MyRank>, response: Response<MyRank>) {
                 Log.d(TAG, "response:${response.body()} ${response.code()}")
 
-                if(response.code()== MY_RANK_NOT_EXIST){
+                if (response.code() == MY_RANK_NOT_EXIST) {
                     responseRankData.value = MyRank(userName, MY_RANK_NOT_EXIST)
-                }else{
+                } else {
                     val rankResponse = response.body()
                     responseRankData.value = rankResponse
                 }
@@ -104,8 +104,8 @@ class HangmanApiFetchr {
         private var INSTANCE: HangmanApiFetchr? = null
         const val EXIST_NAME = 203
         const val USER_INPUT_SUCCESS = 202
-        const val GET_MY_RANK_SUCCESS=200
-        const val MY_RANK_NOT_EXIST=404
+        const val GET_MY_RANK_SUCCESS = 200
+        const val MY_RANK_NOT_EXIST = 404
 
         fun initialize() {
             if (INSTANCE == null) {

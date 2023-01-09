@@ -6,44 +6,44 @@ import androidx.room.Room
 import com.hang.android.krhangman.model.User
 import kotlinx.coroutines.*
 
-private const val DATABASE_NAME="hangman-database"
+private const val DATABASE_NAME = "hangman-database"
 
-class Repository private constructor(context: Context){
-    private val database:HangmanDB= Room.databaseBuilder(
+class Repository private constructor(context: Context) {
+    private val database: HangmanDB = Room.databaseBuilder(
         context.applicationContext,
         HangmanDB::class.java,
         DATABASE_NAME
     ).build()
 
-    private val hangmanDao=database.hangmanDao()
+    private val hangmanDao = database.hangmanDao()
 
-    fun getUser(): User{
-        var user:User
-        runBlocking{
-            user=hangmanDao.getUser()
+    fun getUser(): User {
+        var user: User
+        runBlocking {
+            user = hangmanDao.getUser()
         }
 
         return user
     }
 
     @OptIn(DelicateCoroutinesApi::class)
-    fun addUser(user:User){
-        GlobalScope.launch(Dispatchers.IO){
+    fun addUser(user: User) {
+        GlobalScope.launch(Dispatchers.IO) {
             hangmanDao.addUser(user)
         }
     }
 
-    companion object{
-        private var INSTANCE:Repository?=null
+    companion object {
+        private var INSTANCE: Repository? = null
 
-        fun initialize(context:Context){
-            if(INSTANCE==null){
-                INSTANCE=Repository(context)
+        fun initialize(context: Context) {
+            if (INSTANCE == null) {
+                INSTANCE = Repository(context)
             }
         }
 
-        fun get():Repository{
-            return INSTANCE?:throw IllegalStateException("Repository must be initialize")
+        fun get(): Repository {
+            return INSTANCE ?: throw IllegalStateException("Repository must be initialize")
         }
     }
 
