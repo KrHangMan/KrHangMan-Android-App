@@ -18,7 +18,10 @@
     <string name="guide_page_button_next">다음</string>
 
     <string name="rank_page_title">랭킹</string>
-    <string name="hello">나는 %2$s등 입니다.</string>
+    <string name="rank_page_nickname">닉네임 :  %s </string>
+    <string name="rank_page_point">최고 점수 :  %s </string>
+    <string name="rank_page_rank">%s 등 </string>
+
 
 
 </resources>

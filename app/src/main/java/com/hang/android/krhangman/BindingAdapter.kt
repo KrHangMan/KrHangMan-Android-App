@@ -1,14 +1,14 @@
 package com.hang.android.krhangman
 
-import android.content.Context
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.hang.android.krhangman.api.Rank
+import com.hang.android.krhangman.ui.RankingActivity
 
-@BindingAdapter("loadGuidePage")
-fun loadGuidePage(imgView:ImageView,img:Int){
-    imgView.setImageResource(img)
-    Log.d("bind",img.toString())
+
+@BindingAdapter("setRankItems")
+fun setRankItems(recycler: RecyclerView, rankList:List<Rank>?){
+    Log.d("testb","in Binding: ${rankList}")
+    (recycler?.adapter as? RankingActivity.RankAdapter)?.submitList(rankList)
 }

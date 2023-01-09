@@ -14,11 +14,12 @@
         android:layout_marginBottom="3dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:background="@drawable/rank_item_round"
         android:padding="1dp"
         android:elevation="5dp"
         android:orientation="horizontal">
         <LinearLayout
-            android:layout_width="150dp"
+            android:layout_width="230dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="5dp"
@@ -27,8 +28,10 @@
                 android:id="@+id/item_rank_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{rank.userName}"
                 android:hint="name"
+                android:text="@{@string/rank_page_nickname(rank.userName)}"
+                android:textSize="25sp"
+                android:textColor="@color/main_button"
                 android:layout_margin="5dp"
                 />
 
@@ -36,16 +39,21 @@
                 android:id="@+id/item_rank_score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="score"
-                android:text="@{rank.correct_cnt}"
+                android:hint="point"
+                android:textSize="25sp"
+                android:textColor="@color/main_button"
+                android:text="@{@string/rank_page_point(rank.correct_cnt)}"
                 android:layout_margin="5dp"
                 />
         </LinearLayout>
         <TextView
-            android:layout_width="240dp"
+            android:id="@+id/item_rank_rank"
+            android:layout_width="155dp"
             android:layout_height="match_parent"
-            android:hint="등수"
-            android:text="@{rank.correct_cnt}"
+            android:hint="rank"
+            android:text="@{@string/rank_page_rank(rank.rank)}"
+            android:textSize="25sp"
+            android:textColor="@color/main_button"
 
             android:padding="30dp"
             android:layout_gravity="end"

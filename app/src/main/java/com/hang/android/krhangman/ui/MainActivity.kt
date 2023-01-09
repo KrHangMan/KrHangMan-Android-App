@@ -28,6 +28,11 @@ class MainActivity : Activity() {
             Log.d(TAG,Repository.get().getUser().toString())
         }
 
+        binding.mainPageButtonRank.setOnClickListener{
+            val intent = RankingActivity.newIntent(this@MainActivity)
+            startActivity(intent)
+        }
+
 
     }
 

@@ -1,12 +1,15 @@
 package com.hang.android.krhangman.api
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.hang.android.krhangman.vm.LoginActivityViewModel
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 
@@ -19,29 +22,45 @@ class HangmanApiFetchr {
     init {
         val retrofit: Retrofit =Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         hangmanApi=retrofit.create(HangmanApi::class.java)
     }
-
-    fun getRank(){
-        val test=hangmanApi.getRank()
-        test.enqueue(object: Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                Log.d(TAG,"response:${response.body()} ${response.code()}")
+    fun test(){
+        val rankRequest=hangmanApi.getTest()
+        rankRequest.enqueue(object: Callback<RankResponse> {
+            override fun onResponse(call: Call<RankResponse>, response: Response<RankResponse>) {
+                Log.d(TAG,"response:$response ${response.body()?.ranks}")
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
+            override fun onFailure(call: Call<RankResponse>, t: Throwable) {
                 Log.e(TAG,"fail",t)
             }
 
         })
     }
+    fun getRank(): LiveData<List<Rank>> {
+        val responseRankData:MutableLiveData<List<Rank>> =  MutableLiveData()
+        val rankRequest=hangmanApi.getRank()
+        rankRequest.enqueue(object: Callback<RankResponse> {
+            override fun onResponse(call: Call<RankResponse>, response: Response<RankResponse>) {
+                Log.d(TAG,"response:${response.body()?.ranks} ${response.code()}")
+                val rankResponse=response.body()
+                responseRankData.value=rankResponse?.ranks
+            }
+
+            override fun onFailure(call: Call<RankResponse>, t: Throwable) {
+                Log.e(TAG,"fail",t)
+            }
+
+        })
+        Log.d("beforeReturn",responseRankData.value.toString())
+        return responseRankData
+    }
 
    fun addUser(userName:String,viewModel:LoginActivityViewModel){
         val addUserRetrofit=hangmanApi.addUser(userName)
-
 
         addUserRetrofit.enqueue(object:Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
