@@ -18,9 +18,12 @@
     <string name="guide_page_button_next">다음</string>
 
     <string name="rank_page_title">랭킹</string>
+    <string name="rank_page_my_rank">나의 랭킹은 %d 등 입니다!!!</string>
+    <string name="rank_page_not_exist_my_rank">아직 플레이 기록이 없으시네요</string>
     <string name="rank_page_nickname">닉네임 :  %s </string>
     <string name="rank_page_point">최고 점수 :  %s </string>
     <string name="rank_page_rank">%s 등 </string>
+    <string name="rank_page_no_point">플레이기록 없음.</string>
 
 
 

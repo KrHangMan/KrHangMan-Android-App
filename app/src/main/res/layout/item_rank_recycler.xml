@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:hint="name"
                 android:text="@{@string/rank_page_nickname(rank.userName)}"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textColor="@color/main_button"
                 android:layout_margin="5dp"
                 />
@@ -40,9 +40,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="point"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textColor="@color/main_button"
-                android:text="@{@string/rank_page_point(rank.correct_cnt)}"
+                android:text = "@{ rank.correct_cnt == null?@string/rank_page_no_point:@string/rank_page_point(rank.correct_cnt)}"
                 android:layout_margin="5dp"
                 />
         </LinearLayout>

@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hang.android.krhangman.R
+import com.hang.android.krhangman.api.HangmanApiFetchr
 import com.hang.android.krhangman.api.Rank
 import com.hang.android.krhangman.databinding.ActivityRankingBinding
 import com.hang.android.krhangman.databinding.ItemRankRecyclerBinding
@@ -41,14 +42,26 @@ class RankingActivity : AppCompatActivity(), LifecycleOwner {
         binding.rankPageRecyclerView.adapter=RankAdapter(diffUtil).apply{submitList(viewModel.rankList.value)}
         binding.rankPageRecyclerView.layoutManager=LinearLayoutManager(this)
 
-        viewModel.rankList.observe(
-            this@RankingActivity,
-            Observer {
-                Log.d("rankObserver",it.toString())
-                (binding.rankPageRecyclerView.adapter as RankAdapter).submitList(it)
+        viewModel.apply{
+            rankList.observe(
+                this@RankingActivity,
+                Observer {
+                    Log.d("rankObserver",it.toString())
+                    (binding.rankPageRecyclerView.adapter as RankAdapter).submitList(it)
 
-            }
-        )
+                }
+            )
+            myRank.observe(
+                this@RankingActivity,
+                Observer {
+                    Log.d("myRank",myRank.value.toString())
+                    binding.rankPageMyRank.text=getString(R.string.rank_page_my_rank,myRank.value!!.rank)
+                }
+            )
+
+
+
+        }
     }
 
 
@@ -64,7 +77,6 @@ class RankingActivity : AppCompatActivity(), LifecycleOwner {
 
             fun bind(rank:Rank){
                 binding.rank=rank
-
             }
 
 

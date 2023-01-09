@@ -5,6 +5,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface HangmanApi {
 
@@ -16,10 +17,15 @@ interface HangmanApi {
     @FormUrlEncoded
     fun addUser( @Field("username") user_name:String):Call<Void>
 
-    //rank 조회하기
+    //전체 rank 조회하기
     @GET("/api/users/rank/")
     fun getRank():Call<RankResponse>
 
+    //내 rank 조회하기
+    @GET("/api/users/rank/{user_name}")
+    fun getMyRank(
+        @Path("user_name") user_name: String
+    ):Call<MyRank>
 
     @GET("/api/users/rank/")
     fun getTest():Call<RankResponse>
