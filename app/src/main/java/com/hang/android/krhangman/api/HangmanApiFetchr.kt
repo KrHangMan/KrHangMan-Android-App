@@ -1,6 +1,8 @@
 package com.hang.android.krhangman.api
 
 import android.util.Log
+import com.hang.android.krhangman.vm.LoginActivityViewModel
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,11 +25,11 @@ class HangmanApiFetchr {
         hangmanApi=retrofit.create(HangmanApi::class.java)
     }
 
-   /* fun getRank(){
+    fun getRank(){
         val test=hangmanApi.getRank()
-        test.enqueue(object: Callback<RankResponse> {
+        test.enqueue(object: Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
-                Log.d(TAG,"response:${response.body()} ")
+                Log.d(TAG,"response:${response.body()} ${response.code()}")
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {
@@ -35,31 +37,41 @@ class HangmanApiFetchr {
             }
 
         })
-    }*/
+    }
 
-    fun addUser(userName:String){
-        val test=hangmanApi.addUser(userName)
+   fun addUser(userName:String,viewModel:LoginActivityViewModel){
+        val addUserRetrofit=hangmanApi.addUser(userName)
 
-        test.enqueue(object:Callback<Void> {
 
+        addUserRetrofit.enqueue(object:Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if (response.isSuccessful.not()){
+                if(response.isSuccessful){
+                    if(response.code()==EXIST_NAME){
+                        Log.e(TAG, "aleady exist nickname")
+                        viewModel.addUserResponse.value= EXIST_NAME
+
+                    }else if(response.code()== USER_INPUT_SUCCESS){
+                        Log.e(TAG, "addUser성공")
+                        viewModel.userName=userName
+                        viewModel.addUserResponse.value= USER_INPUT_SUCCESS
+                    }
+                }else {
                     Log.e(TAG, response.toString())
-                    return
-                }else{
-                    Log.e(TAG, "addUser성공")
+
                 }
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
             }
-
         })
     }
 
 
+
     companion object{
         private var INSTANCE: HangmanApiFetchr?=null
+        const val EXIST_NAME=203
+        const val USER_INPUT_SUCCESS=202
 
         fun initialize(){
             if(INSTANCE==null){

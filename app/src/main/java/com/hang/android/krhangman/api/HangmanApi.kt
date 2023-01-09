@@ -18,7 +18,7 @@ interface HangmanApi {
 
     //rank 조회하기
     @GET("/api/users/rank/")
-    fun getRank():Call<RankResponse>
+    fun getRank():Call<String>
 
 
 }

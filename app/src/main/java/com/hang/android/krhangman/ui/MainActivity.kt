@@ -23,7 +23,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding:ActivityMainBinding=DataBindingUtil.setContentView(this, R.layout.activity_main)
-
+        Log.d(TAG,"test")
         GlobalScope.launch {
             Log.d(TAG,Repository.get().getUser().toString())
         }

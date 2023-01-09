@@ -7,6 +7,7 @@
     <string name="nickname_wrong_input_short">닉네임은 한글자 이상이어야 합니다.</string>
     <string name="nickname_wrong_input_long">닉네임은 20 글자 미만이어야 합니다.</string>
     <string name="nickname_wrong_input_special">닉네임은 영어와 한글, 숫자만 가능합니다.</string>
+    <string name="nickname_already_exist">이미 존재하는 닉네임입니다.</string>
 
     <string name="main_page_title">ᄒᆞᆫ글 행맨</string>
     <string name="main_page_game_start">놀이 시작</string>

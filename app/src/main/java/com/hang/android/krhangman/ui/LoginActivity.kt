@@ -7,12 +7,16 @@ import android.os.Bundle
 import android.provider.ContactsContract.CommonDataKinds.Nickname
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.AttributeSet
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.hang.android.krhangman.R
+import com.hang.android.krhangman.api.HangmanApiFetchr
 import com.hang.android.krhangman.databinding.ActivityLoginBinding
 import com.hang.android.krhangman.model.User
 import com.hang.android.krhangman.vm.LoginActivityViewModel
@@ -49,23 +53,39 @@ class LoginActivity : AppCompatActivity() {
             val isValidateNickname=checkNicknameValidate(nicknameInput)
             if(isValidateNickname){
                 val user= User(nickname = nicknameInput)
-                viewModel.addUser(user)
-
-                val pref = getSharedPreferences(INITIAL_LAUNCH, MODE_PRIVATE)
-                val editor = pref.edit()
-                editor.putBoolean(INITIAL_LAUNCH, true)
-                editor.apply()
-
-                val intent = MainActivity.newIntent(this)
-                startActivity(intent)
+                viewModel.requestAddUser(user)
             }
-
-
 
 
         }
     }
-    fun checkNicknameValidate(nickname: String):Boolean{
+
+    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
+
+        viewModel.addUserResponse.observe(
+            this,
+            Observer {value->
+                if(value==HangmanApiFetchr.USER_INPUT_SUCCESS){
+                    viewModel.addUser()
+                    val pref = getSharedPreferences(INITIAL_LAUNCH, MODE_PRIVATE)
+                    val editor = pref.edit()
+                    editor.putBoolean(INITIAL_LAUNCH, true)
+                    editor.apply()
+
+                    val intent = MainActivity.newIntent(this)
+                    startActivity(intent)
+                }else{
+                    Toast.makeText(baseContext,getString(R.string.nickname_already_exist),Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+
+
+
+
+        return super.onCreateView(name, context, attrs)
+    }
+    private fun checkNicknameValidate(nickname: String):Boolean{
         /*
             2글자 이상 20글자미만, 한글 영어 숫자, 특수문자 사용 x
 
@@ -82,7 +102,7 @@ class LoginActivity : AppCompatActivity() {
             return false
         }
 
-        val pattern= "^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{1,6}$"
+        val pattern= "^[ㄱ-ㅣ가-힣a-zA-Z0-9\\s]+$"
         val p= Pattern.matches(pattern,nickname)
         if(!p){
             Toast.makeText(baseContext,R.string.nickname_wrong_input_special,Toast.LENGTH_SHORT).show()

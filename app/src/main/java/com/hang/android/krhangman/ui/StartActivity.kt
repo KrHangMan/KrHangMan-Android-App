@@ -6,6 +6,8 @@ import android.view.animation.AnimationUtils
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import com.hang.android.krhangman.R
+import com.hang.android.krhangman.api.HangmanApi
+import com.hang.android.krhangman.api.HangmanApiFetchr
 import com.hang.android.krhangman.databinding.ActivityStartBinding
 
 const val INITIAL_LAUNCH="Initial Launch Check"
@@ -16,6 +18,7 @@ class StartActivity : Activity() {
 
         super.onCreate(savedInstanceState)
         val binding:ActivityStartBinding= DataBindingUtil.setContentView(this,R.layout.activity_start)
+
 
         binding.apply {
             startPageText.apply{
