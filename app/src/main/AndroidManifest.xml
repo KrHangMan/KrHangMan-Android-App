@@ -17,8 +17,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.KrHangman.Splash"
-
-        tools:targetApi="29">
+        tools:targetApi="s">
         <activity
             android:name=".ui.LoginActivity"
             android:exported="false"

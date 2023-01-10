@@ -7,20 +7,20 @@
         <item name="hintTextColor">@color/main_button</item>
 
 
-        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:statusBarColor">@color/main_button</item>
     </style>
 
 
     <style name="Theme.KrHangman.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenBackground">@color/main_button</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_round</item>
         <item name="postSplashScreenTheme">@style/Theme.KrHangman</item>
 
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:fontFamily">@font/yet_hangle</item>
 
-        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:statusBarColor">@color/main_button</item>
     </style>
 
 
