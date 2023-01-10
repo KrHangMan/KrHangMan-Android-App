@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">KrHangman</string>
+    <string name="app_name">KrHangManAndroidApp</string>
+    <string name="server_url">https://virtserver.swaggerhub.com/OPOP0421/KrHangMan/1.0.0/api/</string>
+    <string name="get_word_url">/words</string>
 </resources>
