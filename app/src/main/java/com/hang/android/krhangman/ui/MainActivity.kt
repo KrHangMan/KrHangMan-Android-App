@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
+import com.hang.android.krhangman.GameActivity
 import com.hang.android.krhangman.R
 import com.hang.android.krhangman.api.HangmanApiFetchr
 import com.hang.android.krhangman.databinding.ActivityMainBinding
@@ -32,6 +33,11 @@ class MainActivity : Activity() {
         binding.mainPageButtonRank.setOnClickListener {
             val intent = RankingActivity.newIntent(this@MainActivity)
             startActivity(intent)
+        }
+        binding.mainPageButtonGameStart.setOnClickListener {
+            val intent = GameActivity.newIntent(this@MainActivity)
+            startActivity(intent)
+
         }
 
 

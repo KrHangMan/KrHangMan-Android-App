@@ -41,6 +41,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".GameActivity"/>
         <activity
             android:name=".ui.RankingActivity"
             android:exported="false"
