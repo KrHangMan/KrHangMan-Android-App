@@ -2,14 +2,11 @@ package com.hang.android.krhangman
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
+import com.hang.android.krhangman.api.HangmanApiFetchr
 import com.hang.android.krhangman.databinding.DialGameResultBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.hang.android.krhangman.model.User
+
 
 
 const val DIALOG_WIDTH = 0.8
@@ -27,7 +24,7 @@ class GameResultDialog(context: Context, isCorrect: Boolean, word: Word, user: U
                 btnContinue.text = "다시 하기"
             }
             btnContinue.setOnClickListener {
-                patchRank(user)
+                HangmanApiFetchr.get().patchRank(user)
                 dismiss()
             }
             btnHome.setOnClickListener {
@@ -42,25 +39,5 @@ class GameResultDialog(context: Context, isCorrect: Boolean, word: Word, user: U
         )
     }
 
-    private fun patchRank(user: User) {
-        Log.e("ERR", user.toString())
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("http://ec2-13-125-198-195.ap-northeast-2.compute.amazonaws.com/api/")
-            .addConverterFactory(GsonConverterFactory.create()).build()
 
-        val service: RetrofitService = retrofit.create(RetrofitService::class.java)
-
-        service.patchRank(user.name, user.score).enqueue(object : Callback<Body> {
-            override fun onResponse(call: Call<Body>, response: Response<Body>) {
-                Log.e("ERR", response.toString())
-                if(response.isSuccessful){
-
-                }
-            }
-
-            override fun onFailure(call: Call<Body>, t: Throwable) {
-
-            }
-        })
-    }
 }

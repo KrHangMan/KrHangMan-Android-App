@@ -3,14 +3,16 @@ package com.hang.android.krhangman.api
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.hang.android.krhangman.Body
+import com.hang.android.krhangman.Word
+import com.hang.android.krhangman.WordBody
+import com.hang.android.krhangman.model.User
 import com.hang.android.krhangman.vm.LoginActivityViewModel
-import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 
 
 private const val TAG = "HangmanApiFetchr"
@@ -95,6 +97,40 @@ class HangmanApiFetchr {
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
+            }
+        })
+    }
+
+    fun patchRank(user: User) {
+        val service = hangmanApi.patchRank(user.nickname,user.score)
+
+        service.enqueue(object : Callback<Body> {
+            override fun onResponse(call: Call<Body>, response: Response<Body>) {
+                Log.e("ERR", response.toString())
+                if(response.isSuccessful){
+
+                }
+            }
+
+            override fun onFailure(call: Call<Body>, t: Throwable) {
+
+            }
+        })
+    }
+    fun getWordList(wordList:ArrayList<Word>) {
+        val service=hangmanApi.getWord()
+
+        service.enqueue(object : Callback<WordBody> {
+            override fun onResponse(call: Call<WordBody>, response: Response<WordBody>) {
+                if(response.isSuccessful){
+                    wordList += response.body()!!.word as ArrayList<Word>
+
+                    //word update작업 필요 - GamActivity에서 observer 달아서 해주기
+                }
+            }
+
+            override fun onFailure(call: Call<WordBody>, t: Throwable) {
+
             }
         })
     }

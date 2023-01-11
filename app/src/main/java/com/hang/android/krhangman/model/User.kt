@@ -6,6 +6,6 @@ import java.util.*
 
 @Entity(tableName = "User")
 data class User(
-    @PrimaryKey val id: UUID = UUID.randomUUID(),
-    var nickname: String = ""
+    @PrimaryKey var nickname: String = "",
+    var score:Int=0
 )

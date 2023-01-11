@@ -27,6 +27,4 @@ data class Body(
     val url: String
 )
 
-data class User(val name: String, var score: Int)
-
 data class InputWord(val chars: ArrayList<Char>, val inOrder: ArrayList<Int>)

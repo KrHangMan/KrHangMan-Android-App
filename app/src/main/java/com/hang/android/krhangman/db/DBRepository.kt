@@ -1,7 +1,6 @@
 package com.hang.android.krhangman.db
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.hang.android.krhangman.model.User
 import kotlinx.coroutines.*
@@ -30,6 +29,13 @@ class Repository private constructor(context: Context) {
     fun addUser(user: User) {
         GlobalScope.launch(Dispatchers.IO) {
             hangmanDao.addUser(user)
+        }
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    fun updateScore(user:User){
+        GlobalScope.launch(Dispatchers.IO) {
+            hangmanDao.updateScore(user)
         }
     }
 

@@ -1,11 +1,9 @@
 package com.hang.android.krhangman.api
 
+import com.hang.android.krhangman.Body
+import com.hang.android.krhangman.WordBody
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface HangmanApi {
 
@@ -27,5 +25,14 @@ interface HangmanApi {
 
     @GET("/api/users/rank/")
     fun getTest(): Call<RankResponse>
+
+    @GET("words/")
+    fun getWord(): Call<WordBody>
+
+    @FormUrlEncoded
+    @PATCH("users/{userName}")
+    fun patchRank(
+        @Path("userName") userName: String,
+        @Field("correct_cnt") cnt: Int): Call<Body>
 
 }

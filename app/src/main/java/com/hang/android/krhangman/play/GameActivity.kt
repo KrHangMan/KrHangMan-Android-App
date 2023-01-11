@@ -9,9 +9,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hang.android.krhangman.api.HangmanApiFetchr
 import com.hang.android.krhangman.databinding.ActivityGameBinding
 import com.hang.android.krhangman.db.Repository
-import com.hang.android.krhangman.ui.RankingActivity
+import com.hang.android.krhangman.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -95,32 +96,13 @@ class GameActivity: AppCompatActivity() {
 
     private fun getNextWord() {
         if(wordList.size <= wordNum + 1) {
-            getWordList()
+            HangmanApiFetchr.get().getWordList(wordList) //wordList를 LiveData로 바꿔서 전달하기
         }else {
             word = wordList[wordNum++]
         }
     }
 
-    private fun getWordList() {
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("http://ec2-13-125-198-195.ap-northeast-2.compute.amazonaws.com/api/")
-            .addConverterFactory(GsonConverterFactory.create()).build()
 
-        val service: RetrofitService = retrofit.create(RetrofitService::class.java)
-
-        service.getWord().enqueue(object : Callback<WordBody> {
-            override fun onResponse(call: Call<WordBody>, response: Response<WordBody>) {
-                if(response.isSuccessful){
-                    wordList += response.body()!!.word as ArrayList<Word>
-                    getNextWord()
-                }
-            }
-
-            override fun onFailure(call: Call<WordBody>, t: Throwable) {
-
-            }
-        })
-    }
 
     private fun updateUserInput() {
         val copyList = inputWord.clone() as ArrayList<Char>
