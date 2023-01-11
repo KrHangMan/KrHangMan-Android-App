@@ -13,7 +13,7 @@
 
     <style name="Theme.KrHangman.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/main_button</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_round</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/app_icon</item>
         <item name="postSplashScreenTheme">@style/Theme.KrHangman</item>
 
         <item name="windowNoTitle">true</item>

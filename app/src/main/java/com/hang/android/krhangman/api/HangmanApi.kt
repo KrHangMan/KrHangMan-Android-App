@@ -23,8 +23,6 @@ interface HangmanApi {
         @Path("user_name") user_name: String
     ): Call<MyRank>
 
-    @GET("/api/users/rank/")
-    fun getTest(): Call<RankResponse>
 
     @GET("words/")
     fun getWord(): Call<WordBody>
