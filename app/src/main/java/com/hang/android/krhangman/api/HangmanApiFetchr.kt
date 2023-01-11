@@ -14,7 +14,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 
 private const val TAG = "HangmanApiFetchr"
-private const val BASE_URL = "http://ec2-3-36-131-251.ap-northeast-2.compute.amazonaws.com:80"
+private const val BASE_URL = "http://ec2-13-125-198-195.ap-northeast-2.compute.amazonaws.com:80/"
 
 class HangmanApiFetchr {
     private val hangmanApi: HangmanApi
