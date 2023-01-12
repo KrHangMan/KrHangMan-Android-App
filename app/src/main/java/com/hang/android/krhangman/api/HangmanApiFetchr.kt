@@ -117,14 +117,14 @@ class HangmanApiFetchr {
             }
         })
     }
-    fun getWordList(wordList:ArrayList<Word>) {
-        val service=hangmanApi.getWord()
+    fun getAnswerList(wordList : MutableLiveData<ArrayList<Word>>) {
+        val service = hangmanApi.getWord()
 
         service.enqueue(object : Callback<WordBody> {
             override fun onResponse(call: Call<WordBody>, response: Response<WordBody>) {
                 if(response.isSuccessful){
-                    wordList += response.body()!!.word as ArrayList<Word>
-
+                    wordList.value = response.body()!!.word as ArrayList<Word>
+                    Log.e("FE", response.body()!!.toString())
                     //word update작업 필요 - GamActivity에서 observer 달아서 해주기
                 }
             }

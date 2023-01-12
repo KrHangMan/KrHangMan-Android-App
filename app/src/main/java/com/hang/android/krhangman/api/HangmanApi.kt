@@ -26,7 +26,7 @@ interface HangmanApi {
     @GET("/api/users/rank/")
     fun getTest(): Call<RankResponse>
 
-    @GET("words/")
+    @GET("api/words/")
     fun getWord(): Call<WordBody>
 
     @FormUrlEncoded

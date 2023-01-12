@@ -4,132 +4,126 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hang.android.krhangman.api.HangmanApiFetchr
 import com.hang.android.krhangman.databinding.ActivityGameBinding
 import com.hang.android.krhangman.db.Repository
 import com.hang.android.krhangman.model.User
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.hang.android.krhangman.play.GameActivityViewModel
+import com.hang.android.krhangman.play.HelpDialog
 import kotlin.collections.ArrayList
 
 
 const val WORD_MAX_LENGTH = 5
-const val MAX_ATTEMPT = 5
+const val MAX_ATTEMPT = 6
 
 class GameActivity: AppCompatActivity() {
 
     private var attemptCnt = 0
 
-    private val wordList: ArrayList<Word> = ArrayList()
-    private lateinit var word: Word
-    private var wordNum = 0
+    private lateinit var answerList: ArrayList<Word>
+    private lateinit var answer: Word
+    private var answerCnt = 0
 
     private val user = User(Repository.get().getUser().nickname, 0)
 
     private lateinit var mBinding :ActivityGameBinding
 
-    private val inputWords = ArrayList<InputWord>()
+    private val inputWords = Array(MAX_ATTEMPT) { InputWord() }
     private val adapter = WordRecyclerAdapter(inputWords)
+    private val viewModel = GameActivityViewModel()
 
-    private val inputWord = ArrayList<Char>()
-    private lateinit var typedChar: Array<TextView>
-
+    private var isCalling = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getNextWord()
-
         mBinding = ActivityGameBinding.inflate(layoutInflater).apply {
             viewWord.adapter = adapter
             viewWord.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
-            txtAttempts.text = "남은 시도 수 : ${MAX_ATTEMPT}"
 
-            typedChar = arrayOf(txt1, txt2, txt3, txt4, txt5)
+            txtHelp.setOnClickListener {
+                HelpDialog(this@GameActivity).show()
+            }
 
             imbBack.setOnClickListener {
                 finish()
             }
 
+
             btnKeyEnter.setOnClickListener {
-                if(wordList.isEmpty()){
+                if(answerList.isEmpty()){
+                    Toast.makeText(applicationContext, "서버로 부터 값을 불러 오는 중입니다.", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                if (isCalling) {
                     Toast.makeText(applicationContext, "서버로 부터 값을 불러 오는 중입니다.", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
 
-                if(inputWord.size != WORD_MAX_LENGTH) {
+                if(inputWords[attemptCnt].chars.size != WORD_MAX_LENGTH) {
                     Toast.makeText(applicationContext, "입력 값을 확인 해 주세요.", Toast.LENGTH_SHORT).show()
                     clearUserInput()
                     return@setOnClickListener
                 }
 
-                Log.e("ERR", "${word}\n${inputWord}")
-                updateUserInput()
+                Log.e("ERR", "${answer}\n${inputWords[attemptCnt]}")
+                inputWords[attemptCnt].inOrder = createInorderList(inputWords[attemptCnt].chars)
+                adapter.notifyItemChanged(attemptCnt)
 
-                if(compareToAnswer(inputWord)) {
+                if(compareToAnswer(inputWords[attemptCnt].chars)) {
                     user.score++
-                    GameResultDialog(this@GameActivity, true, word, user).show()
+                    GameResultDialog(this@GameActivity, true, answer, user).show()
                     clearAttempts()
+                    return@setOnClickListener
                 }
 
-                if(attemptCnt >= MAX_ATTEMPT) {
-                    GameResultDialog(this@GameActivity, false, word, user).show()
+                if(attemptCnt + 1 >= MAX_ATTEMPT) {
+                    GameResultDialog(this@GameActivity, false, answer, user).show()
                     clearAttempts()
+                    return@setOnClickListener
                 }
-
-                clearUserInput()
+                attemptCnt++
             }
         }
-        
+
+        mBinding.lifecycleOwner = this
+        mBinding.viewModel = viewModel
+
+        viewModel.answerList.observe(this) {
+            isCalling = false
+            answerList = viewModel.answerList.value!!
+            getNextWord()
+        }
         setKeyboard()
 
         setContentView(mBinding.root)
     }
 
     private fun getNextWord() {
-        if(wordList.size <= wordNum + 1) {
-            HangmanApiFetchr.get().getWordList(wordList) //wordList를 LiveData로 바꿔서 전달하기
+        if(answerList.size <= answerCnt + 1) {
+            isCalling = true
+            viewModel.getAnswerList()
         }else {
-            word = wordList[wordNum++]
+            answer = answerList[answerCnt++]
         }
-    }
-
-
-
-    private fun updateUserInput() {
-        val copyList = inputWord.clone() as ArrayList<Char>
-        inputWords += InputWord(copyList, createInorderList(copyList))
-        attemptCnt++
-        updateAttemptsText(MAX_ATTEMPT - attemptCnt)
-        adapter.notifyItemInserted(inputWords.size)
     }
 
     private fun clearUserInput() {
-        inputWord.clear()
-        for(txt in typedChar) {
-            txt.text = ""
-        }
+        inputWords[attemptCnt].chars.clear()
+        adapter.notifyItemChanged(attemptCnt)
     }
 
     private fun clearAttempts() {
         attemptCnt = 0
-        updateAttemptsText(MAX_ATTEMPT)
         getNextWord()
-        inputWords.clear()
+        for(inputWord in inputWords) {
+            inputWord.chars.clear()
+            inputWord.inOrder.clear()
+        }
         adapter.notifyDataSetChanged()
-    }
-
-    private fun updateAttemptsText(num: Int) {
-        val attemptTxt = "남은 시도 수 : ${num}"
-        mBinding.txtAttempts.text = attemptTxt
     }
 
     private fun setKeyboard() {
@@ -143,11 +137,11 @@ class GameActivity: AppCompatActivity() {
     
             for(btn in btnKeys) {
                 btn.setOnClickListener {
-                    if(inputWord.size < WORD_MAX_LENGTH) {
-                        inputWord += btn.text[0]
-                        typedChar[inputWord.lastIndex].text = btn.text
+                    if(inputWords[attemptCnt].chars.size < WORD_MAX_LENGTH) {
+                        inputWords[attemptCnt].chars += btn.text[0]
                         shiftPressed = false
                         switchShift(shiftPressed)
+                        adapter.notifyItemChanged(attemptCnt)
                     }
                 }
             }
@@ -159,8 +153,8 @@ class GameActivity: AppCompatActivity() {
     
             btnKeyBack.setOnClickListener {
                 try {
-                    typedChar[inputWord.lastIndex].text = ""
-                    inputWord.removeLast()
+                    inputWords[attemptCnt].chars.removeLast()
+                    adapter.notifyItemChanged(attemptCnt)
                 } catch (_: Exception) {
     
                 }
@@ -194,20 +188,20 @@ class GameActivity: AppCompatActivity() {
 
     private fun compareToAnswer(list: ArrayList<Char>): Boolean {
         for(i in list.indices) {
-            if(word.spell[i] != list[i]) return false
+            if(answer.spell[i] != list[i]) return false
         }
         return true
     }
 
     private fun createInorderList(inputWordList: ArrayList<Char>): ArrayList<Int> {
         return ArrayList<Int>().apply {
-            for (i in word.spell.indices) {
+            for (i in answer.spell.indices) {
                 when (inputWordList[i]) {
-                    word.spell[i] -> {
+                    answer.spell[i] -> {
                         add(R.color.green)
                     }
 
-                    in word.spell -> {
+                    in answer.spell -> {
                         add(R.color.yellow)
                     }
 
