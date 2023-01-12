@@ -7,7 +7,6 @@ import retrofit2.http.*
 
 interface HangmanApi {
 
-
     //user 넣기
     @POST("/api/users")
     @FormUrlEncoded
@@ -23,14 +22,14 @@ interface HangmanApi {
         @Path("user_name") user_name: String
     ): Call<MyRank>
 
-
-    @GET("words/")
+    @GET("api/words/")
     fun getWord(): Call<WordBody>
 
     @FormUrlEncoded
     @PATCH("users/{userName}")
     fun patchRank(
         @Path("userName") userName: String,
-        @Field("correct_cnt") cnt: Int): Call<Body>
+        @Field("correct_cnt") cnt: Int
+    ): Call<Body>
 
 }

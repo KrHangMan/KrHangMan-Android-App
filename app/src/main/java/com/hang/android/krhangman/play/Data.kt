@@ -27,4 +27,4 @@ data class Body(
     val url: String
 )
 
-data class InputWord(val chars: ArrayList<Char>, val inOrder: ArrayList<Int>)
+data class InputWord(val chars: ArrayList<Char> = ArrayList(), var inOrder: ArrayList<Int> = ArrayList())

@@ -7,13 +7,13 @@ import androidx.lifecycle.ViewModel
 import com.hang.android.krhangman.api.HangmanApiFetchr
 import com.hang.android.krhangman.api.MyRank
 import com.hang.android.krhangman.api.Rank
-import com.hang.android.krhangman.db.Repository
+import com.hang.android.krhangman.db.DBRepository
 
 
 class RankingActivityViewModel : ViewModel() {
 
     var rankList: LiveData<List<Rank>> = HangmanApiFetchr.get().getRank()
     var myRank: LiveData<MyRank> =
-        HangmanApiFetchr.get().getMyRank(Repository.get().getUser().nickname)
+        HangmanApiFetchr.get().getMyRank(DBRepository.get().getUser().nickname)
 
 }

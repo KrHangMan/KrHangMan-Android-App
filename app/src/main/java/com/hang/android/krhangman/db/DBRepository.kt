@@ -7,7 +7,7 @@ import kotlinx.coroutines.*
 
 private const val DATABASE_NAME = "hangman-database"
 
-class Repository private constructor(context: Context) {
+class DBRepository private constructor(context: Context) {
     private val database: HangmanDB = Room.databaseBuilder(
         context.applicationContext,
         HangmanDB::class.java,
@@ -40,15 +40,15 @@ class Repository private constructor(context: Context) {
     }
 
     companion object {
-        private var INSTANCE: Repository? = null
+        private var INSTANCE: DBRepository? = null
 
         fun initialize(context: Context) {
             if (INSTANCE == null) {
-                INSTANCE = Repository(context)
+                INSTANCE = DBRepository(context)
             }
         }
 
-        fun get(): Repository {
+        fun get(): DBRepository {
             return INSTANCE ?: throw IllegalStateException("Repository must be initialize")
         }
     }

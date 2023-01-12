@@ -124,7 +124,24 @@ class HangmanApiFetchr {
             override fun onResponse(call: Call<WordBody>, response: Response<WordBody>) {
                 if(response.isSuccessful){
                     wordList += response.body()!!.word as ArrayList<Word>
+                    //word update작업 필요 - GamActivity에서 observer 달아서 해주기
+                }
+            }
 
+            override fun onFailure(call: Call<WordBody>, t: Throwable) {
+
+            }
+        })
+    }
+
+    fun getAnswerList(wordList : MutableLiveData<ArrayList<Word>>) {
+        val service = hangmanApi.getWord()
+
+        service.enqueue(object : Callback<WordBody> {
+            override fun onResponse(call: Call<WordBody>, response: Response<WordBody>) {
+                if(response.isSuccessful){
+                    wordList.value = response.body()!!.word as ArrayList<Word>
+                    Log.e("FE", response.body()!!.toString())
                     //word update작업 필요 - GamActivity에서 observer 달아서 해주기
                 }
             }

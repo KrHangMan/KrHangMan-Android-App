@@ -1,17 +1,15 @@
 package com.hang.android.krhangman.ui
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Nickname
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -59,12 +57,7 @@ class LoginActivity : AppCompatActivity() {
                 val user = User(nickname = nicknameInput)
                 viewModel.requestAddUser(user)
             }
-
-
         }
-    }
-
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
 
         viewModel.addUserResponse.observe(
             this,
@@ -75,6 +68,8 @@ class LoginActivity : AppCompatActivity() {
                     val editor = pref.edit()
                     editor.putBoolean(INITIAL_LAUNCH, true)
                     editor.apply()
+                    Log.d("SSSS",pref.getBoolean(INITIAL_LAUNCH,false).toString())
+
 
                     val intent = MainActivity.newIntent(this)
                     startActivity(intent)
@@ -87,12 +82,8 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         )
-
-
-
-
-        return super.onCreateView(name, context, attrs)
     }
+
 
     private fun checkNicknameValidate(nickname: String): Boolean {
         /*

@@ -2,15 +2,14 @@ package com.hang.android.krhangman.ui
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AnimationUtils
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import com.hang.android.krhangman.R
-import com.hang.android.krhangman.api.HangmanApi
-import com.hang.android.krhangman.api.HangmanApiFetchr
 import com.hang.android.krhangman.databinding.ActivityStartBinding
 
-const val INITIAL_LAUNCH = "Initial Launch Check"
+const val INITIAL_LAUNCH = "INITIAL_LAUNCH_CHECK"
 
 class StartActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {

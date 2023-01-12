@@ -15,6 +15,7 @@
             app:layout_constraintRight_toLeftOf="@id/txt2"
             android:textSize="40sp"
             android:gravity="center"
+            android:textColor="@color/black"
             android:background="@drawable/round_shape"/>
 
         <TextView
@@ -27,6 +28,7 @@
             app:layout_constraintRight_toLeftOf="@id/txt3"
             android:textSize="40sp"
             android:gravity="center"
+            android:textColor="@color/black"
             android:background="@drawable/round_shape"/>
 
         <TextView
@@ -39,6 +41,7 @@
             app:layout_constraintRight_toLeftOf="@id/txt4"
             android:textSize="40sp"
             android:gravity="center"
+            android:textColor="@color/black"
             android:background="@drawable/round_shape"/>
 
         <TextView
@@ -51,6 +54,7 @@
             app:layout_constraintRight_toLeftOf="@id/txt5"
             android:textSize="40sp"
             android:gravity="center"
+            android:textColor="@color/black"
             android:background="@drawable/round_shape" />
 
         <TextView
@@ -63,6 +67,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:textSize="40sp"
             android:gravity="center"
+            android:textColor="@color/black"
             android:background="@drawable/round_shape"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
