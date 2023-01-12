@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hang.android.krhangman.api.HangmanApiFetchr
 import com.hang.android.krhangman.databinding.ActivityGameBinding
 import com.hang.android.krhangman.db.Repository
 import com.hang.android.krhangman.model.User
@@ -100,6 +101,11 @@ class GameActivity: AppCompatActivity() {
         setKeyboard()
 
         setContentView(mBinding.root)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        HangmanApiFetchr.get().patchRank(user)
     }
 
     private fun getNextWord() {
