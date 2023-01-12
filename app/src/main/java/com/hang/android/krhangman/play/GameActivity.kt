@@ -69,7 +69,7 @@ class GameActivity: AppCompatActivity() {
                     return@setOnClickListener
                 }
 
-                Log.e("ERR", "${answer}\n${inputWords[attemptCnt]}")
+                Log.e("result", "${answer}\n${inputWords[attemptCnt]}")
                 inputWords[attemptCnt].inOrder = createInorderList(inputWords[attemptCnt].chars)
                 adapter.notifyItemChanged(attemptCnt)
 
@@ -105,6 +105,7 @@ class GameActivity: AppCompatActivity() {
     private fun getNextWord() {
         if(answerList.size <= answerCnt + 1) {
             isCalling = true
+            answerCnt = 0
             viewModel.getAnswerList()
         }else {
             answer = answerList[answerCnt++]
