@@ -58,7 +58,7 @@
                         android:id="@+id/login_page_edit_text_nickname"
                         android:gravity="center"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="65dp"
                         android:background="@drawable/login_nickname_edit_text"
                         android:maxLength="20"
 
@@ -73,9 +73,9 @@
 
                 <Button
                     android:id="@+id/login_page_button_submit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/main_button"
+                    style="@style/Main_Page_Button"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
                     android:textColor="@color/white"
                     android:text="@string/nickname_decide_button"
                     />
