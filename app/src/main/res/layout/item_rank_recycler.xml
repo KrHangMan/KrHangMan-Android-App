@@ -56,18 +56,21 @@
         </LinearLayout>
 
         <TextView
-            app:layout_constraintHorizontal_weight="0.15"
+            app:layout_constraintHorizontal_weight="0.18"
             android:id="@+id/item_rank_rank"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:gravity="end|center"
+            android:gravity="center"
             android:hint="rank"
             android:padding="30dp"
 
+
+
             android:text="@{@string/rank_page_rank(rank.rank)}"
-            android:textColor="@color/main_button"
-            android:textSize="22sp"
+            android:textColor="@color/rank_color"
+            android:textSize="25sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/name_point_linear"

@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-       android:background="@drawable/main_background"
+        android:background="@drawable/main_background"
         android:theme="@style/Theme.KrHangman"
         android:backgroundTint="#80FFFFFF"
         android:backgroundTintMode="src_over"
