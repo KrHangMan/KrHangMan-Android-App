@@ -50,7 +50,7 @@ class GameActivity: AppCompatActivity() {
             }
 
             imbBack.setOnClickListener {
-                finish()
+                onBackPressed()
             }
 
 
