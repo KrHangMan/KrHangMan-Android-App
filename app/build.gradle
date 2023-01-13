@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.hang.android.krhangman"
-        minSdk 29
+        minSdk 31
         versionCode 1
         versionName "1.0"
 

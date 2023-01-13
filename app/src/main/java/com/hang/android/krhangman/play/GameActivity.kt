@@ -28,7 +28,7 @@ class GameActivity: AppCompatActivity() {
     private lateinit var answer: Word
     private var answerCnt = 0
 
-    private val user = User(DBRepository.get().getUser().nickname)
+    private val user = DBRepository.get().getUser()
 
     private lateinit var mBinding :ActivityGameBinding
 
