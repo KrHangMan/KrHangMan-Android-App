@@ -3,6 +3,7 @@ package com.hang.android.krhangman.api
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.hang.android.krhangman.Body
+import com.hang.android.krhangman.BuildConfig
 import com.hang.android.krhangman.Word
 import com.hang.android.krhangman.WordBody
 import com.hang.android.krhangman.model.User
@@ -15,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 private const val TAG = "HangmanApiFetchr"
-private const val BASE_URL = "http://ec2-13-125-198-195.ap-northeast-2.compute.amazonaws.com:80/"
+private const val BASE_URL =BuildConfig.base_url
 
 class HangmanApiFetchr {
     private val hangmanApi: HangmanApi

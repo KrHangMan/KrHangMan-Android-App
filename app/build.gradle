@@ -3,7 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
 }
-
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 android {
     compileSdk 32
 
@@ -13,6 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField "String", "base_url", properties['base_url']
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     dataBinding{

@@ -24,7 +24,7 @@ class GameActivity: AppCompatActivity() {
 
     private var attemptCnt = 0
 
-    private lateinit var answerList: ArrayList<Word>
+    private var answerList: ArrayList<Word> = arrayListOf()
     private lateinit var answer: Word
     private var answerCnt = 0
 
