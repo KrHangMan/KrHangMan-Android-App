@@ -4,15 +4,21 @@
     package="com.hang.android.krhangman">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:xlargeScreens="false"
 
+        android:anyDensity="true"/>
 
     <application
         android:name=".KrHangmanApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/app_icon"
-        android:roundIcon="@mipmap/app_icon"
+        android:icon="@mipmap/app_icon_foreground"
+        android:roundIcon="@mipmap/app_icon_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"

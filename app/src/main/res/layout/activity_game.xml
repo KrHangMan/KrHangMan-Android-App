@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="viewModel"
             type="com.hang.android.krhangman.play.GameActivityViewModel" />
-        </data>
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -59,7 +60,7 @@
             android:layout_width="0dp"
             app:layout_constraintBottom_toTopOf="@id/guideGame"
             android:layout_marginBottom="10dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
@@ -70,261 +71,321 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.75"/>
 
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyQ"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toLeftOf="parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/guideGame"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyW"
-            android:text="ㅂ"/>
+            android:orientation="vertical"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/row1"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyQ"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyW"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="ㅂ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyW"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyQ"
-            app:layout_constraintTop_toBottomOf="@id/guideGame"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyE"
-            android:text="ㅈ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyW"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyQ"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyE"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="ㅈ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyE"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyW"
-            app:layout_constraintTop_toBottomOf="@id/guideGame"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyR"
-            android:text="ㄷ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyE"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyW"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyR"
+                    android:text="ㄷ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyR"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyE"
-            app:layout_constraintTop_toBottomOf="@id/guideGame"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyT"
-            android:text="ㄱ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyR"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyE"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyT"
+                    android:text="ㄱ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyT"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyR"
-            app:layout_constraintTop_toBottomOf="@id/guideGame"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyY"
-            android:text="ㅅ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyT"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyR"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyY"
+                    android:text="ㅅ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyY"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyT"
-            app:layout_constraintTop_toBottomOf="@id/guideGame"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyU"
-            android:text="ㅛ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyY"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyT"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyU"
+                    android:text="ㅛ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyU"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyY"
-            app:layout_constraintTop_toBottomOf="@id/guideGame"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyI"
-            android:text="ㅕ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyU"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyY"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyI"
+                    android:text="ㅕ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyI"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyU"
-            app:layout_constraintTop_toBottomOf="@id/guideGame"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyO"
-            android:text="ㅑ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyI"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyU"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyO"
+                    android:text="ㅑ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyO"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyI"
-            app:layout_constraintTop_toBottomOf="@id/guideGame"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyP"
-            android:text="ㅐ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyO"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyI"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyP"
+                    android:text="ㅐ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyP"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyO"
-            app:layout_constraintTop_toBottomOf="@id/guideGame"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyBack"
-            android:text="ㅔ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyP"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyO"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyBack"
+                    android:text="ㅔ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyBack"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyP"
-            app:layout_constraintTop_toBottomOf="@id/guideGame"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_width="48dp"
-            android:text="Del"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyBack"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyP"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_width="48dp"
+                    android:text="Del"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyNothingL"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btnKeyA"
-            android:layout_width="32dp"
-            android:clickable="false"
-            android:text=" "/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:padding="5dp"
+                android:id="@+id/row2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyNothingL"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="32dp"
+                    android:clickable="false"
+                    android:text=" "/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyA"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyNothingL"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/btnKeyQ"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyS"
-            android:text="ㅁ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyA"
+                    style="@style/keyboard_style"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyS"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyNothingL"
+                    android:text="ㅁ"
+                     />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyS"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyA"
-            app:layout_constraintTop_toTopOf="@id/btnKeyA"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyD"
-            android:text="ㄴ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyS"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyA"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyD"
+                    android:text="ㄴ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyD"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyS"
-            app:layout_constraintTop_toTopOf="@id/btnKeyA"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyF"
-            android:text="ㅇ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyD"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyS"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyF"
+                    android:text="ㅇ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyF"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyD"
-            app:layout_constraintTop_toTopOf="@id/btnKeyA"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyG"
-            android:text="ㄹ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyF"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyD"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyG"
+                    android:text="ㄹ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyG"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyF"
-            app:layout_constraintTop_toTopOf="@id/btnKeyA"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyH"
-            android:text="ㅎ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyG"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyF"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyH"
+                    android:text="ㅎ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyH"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyG"
-            app:layout_constraintTop_toTopOf="@id/btnKeyA"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyJ"
-            android:text="ㅗ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyH"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyG"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyJ"
+                    android:text="ㅗ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyJ"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyH"
-            app:layout_constraintTop_toTopOf="@id/btnKeyA"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyK"
-            android:text="ㅓ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyJ"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyH"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyK"
+                    android:text="ㅓ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyK"
-            style="@style/keyboard_style"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyJ"
-            app:layout_constraintTop_toTopOf="@id/btnKeyA"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyL"
-            android:text="ㅏ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyK"
+                    style="@style/keyboard_style"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyJ"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyL"
+                    android:text="ㅏ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyL"
-            style="@style/keyboard_style"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyNothingR"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyK"
-            app:layout_constraintTop_toTopOf="@id/btnKeyA"
-            android:text="ㅣ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyL"
+                    style="@style/keyboard_style"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyNothingR"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyK"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="ㅣ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyNothingR"
-            style="@style/keyboard_style"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btnKeyA"
-            android:layout_width="32dp"
-            android:clickable="false"
-            android:text=" "/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyNothingR"
+                    style="@style/keyboard_style"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="32dp"
+                    android:clickable="false"
+                    android:text=" "/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyShift"
-            style="@style/keyboard_style"
-            app:layout_constraintTop_toTopOf="@id/btnKeyZ"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_width="64dp"
-            android:text="Shift"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyShift"
+                    style="@style/keyboard_style"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_width="64dp"
+                    android:text="Shift"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyZ"
-            style="@style/keyboard_style"
-            app:layout_constraintTop_toBottomOf="@id/btnKeyA"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyShift"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyX"
-            android:layout_marginTop="10dp"
-            android:text="ㅋ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyZ"
+                    style="@style/keyboard_style"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyShift"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyX"
+                    android:layout_marginTop="10dp"
+                    android:text="ㅋ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyX"
-            style="@style/keyboard_style"
-            app:layout_constraintTop_toTopOf="@id/btnKeyZ"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyZ"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyC"
-            android:text="ㅌ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyX"
+                    style="@style/keyboard_style"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyZ"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyC"
+                    android:text="ㅌ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyC"
-            style="@style/keyboard_style"
-            app:layout_constraintTop_toTopOf="@id/btnKeyZ"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyX"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyV"
-            android:text="ㅊ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyC"
+                    style="@style/keyboard_style"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyX"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyV"
+                    android:text="ㅊ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyV"
-            style="@style/keyboard_style"
-            app:layout_constraintTop_toTopOf="@id/btnKeyZ"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyC"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyB"
-            android:text="ㅍ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyV"
+                    style="@style/keyboard_style"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyC"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyB"
+                    android:text="ㅍ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyB"
-            style="@style/keyboard_style"
-            app:layout_constraintTop_toTopOf="@id/btnKeyZ"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyV"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyN"
-            android:text="ㅠ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyB"
+                    style="@style/keyboard_style"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyV"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyN"
+                    android:text="ㅠ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyN"
-            style="@style/keyboard_style"
-            app:layout_constraintTop_toTopOf="@id/btnKeyZ"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyB"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyM"
-            android:text="ㅜ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyN"
+                    style="@style/keyboard_style"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyB"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyM"
+                    android:text="ㅜ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyM"
-            style="@style/keyboard_style"
-            app:layout_constraintTop_toTopOf="@id/btnKeyZ"
-            app:layout_constraintLeft_toRightOf="@id/btnKeyN"
-            app:layout_constraintRight_toLeftOf="@id/btnKeyEnter"
-            android:text="ㅡ"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyM"
+                    style="@style/keyboard_style"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/btnKeyN"
+                    app:layout_constraintRight_toLeftOf="@id/btnKeyEnter"
+                    android:text="ㅡ"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnKeyEnter"
-            style="@style/keyboard_style"
-            app:layout_constraintTop_toTopOf="@id/btnKeyZ"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_width="64dp"
-            android:text="Enter"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnKeyEnter"
+                    style="@style/keyboard_style"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_width="64dp"
+                    android:text="Enter"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
-

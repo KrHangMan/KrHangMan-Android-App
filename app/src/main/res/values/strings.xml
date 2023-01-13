@@ -2,7 +2,7 @@
     <string name="app_name">hangman</string>
     <string name="touch_to_game_start">터치하여 게임시작...</string>
 
-    <string name="login_page_input_nickname_msg">게임을 진행할 닉네임을 입력해주세요</string>
+    <string name="login_page_input_nickname_msg">유저명을 입력해주세요</string>
     <string name="nickname_decide_button">놀러 가기</string>
     <string name="nickname_wrong_input_short">닉네임은 한글자 이상이어야 합니다.</string>
     <string name="nickname_wrong_input_long">닉네임은 10 글자 미만이어야 합니다.</string>

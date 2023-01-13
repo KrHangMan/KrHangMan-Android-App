@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.hang.android.krhangman"
         minSdk 31
-        versionCode 1
+        versionCode 2
         versionName "1.0"
 
         buildConfigField "String", "base_url", properties['base_url']

@@ -21,7 +21,7 @@
             android:text="@string/main_page_title"
             android:textColor="@color/black"
 
-            android:textSize="50sp"
+            android:textSize="55sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/start_page_text"
             app:layout_constraintEnd_toEndOf="parent"
