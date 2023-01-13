@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (p0!!.length > 20) {
+                if (p0!!.length > 10) {
                     binding.loginPageEditTextNickname.error =
                         getString(R.string.nickname_wrong_input_long)
                 }
@@ -94,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
             return false
         }
 
-        if (nickname.length > 20) {
+        if (nickname.length > 10) {
             Toast.makeText(baseContext, R.string.nickname_wrong_input_long, Toast.LENGTH_SHORT)
                 .show()
 

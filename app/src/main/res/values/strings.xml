@@ -5,7 +5,7 @@
     <string name="login_page_input_nickname_msg">게임을 진행할 닉네임을 입력해주세요</string>
     <string name="nickname_decide_button">놀러 가기</string>
     <string name="nickname_wrong_input_short">닉네임은 한글자 이상이어야 합니다.</string>
-    <string name="nickname_wrong_input_long">닉네임은 20 글자 미만이어야 합니다.</string>
+    <string name="nickname_wrong_input_long">닉네임은 10 글자 미만이어야 합니다.</string>
     <string name="nickname_wrong_input_special">닉네임은 영어와 한글, 숫자만 가능합니다.</string>
     <string name="nickname_already_exist">이미 존재하는 닉네임입니다.</string>
 
@@ -17,8 +17,8 @@
     <string name="guide_page_title">도움말</string>
     <string name="guide_page_button_next">다음</string>
 
-    <string name="rank_page_title">랭킹</string>
-    <string name="rank_page_my_rank">나의 랭킹은 %d 등 입니다!!!</string>
+    <string name="rank_page_title">%s랭킹</string>
+    <string name="rank_page_my_rank">%s나의 랭킹은 %d 등 입니다!!!%s</string>
     <string name="rank_page_not_exist_my_rank">아직 플레이 기록이 없으시네요</string>
     <string name="rank_page_nickname">%s</string>
     <string name="rank_page_point">최고 점수 :  %s </string>

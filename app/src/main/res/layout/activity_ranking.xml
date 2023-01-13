@@ -35,10 +35,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:padding="20dp"
-                android:text="@string/rank_page_title"
+                android:padding="10dp"
+                android:text="@{@string/rank_page_title(viewModel.fireEmoji)}"
                 android:textColor="@color/black"
                 android:fontFamily="@font/yet_hangle"
+                android:hint="rank title"
 
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -51,10 +52,10 @@
                 android:id="@+id/rank_page_my_rank"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
-                android:padding="20dp"
+                android:gravity="center"
+                android:padding="10dp"
                 android:hint="myRank"
-                android:text="@{@string/rank_page_my_rank(viewModel.myRank.rank)}"
+                android:text="@{@string/rank_page_my_rank(viewModel.trophyEmoji,viewModel.myRank.rank,viewModel.trophyEmoji)}"
                 android:textColor="@color/black"
                 android:fontFamily="@font/yet_hangle"
 
@@ -71,6 +72,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
             />
         </LinearLayout>
 

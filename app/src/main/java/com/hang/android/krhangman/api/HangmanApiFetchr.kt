@@ -30,7 +30,7 @@ class HangmanApiFetchr {
         hangmanApi = retrofit.create(HangmanApi::class.java)
     }
 
-    fun getRank(): LiveData<List<Rank>> {
+    fun getRank(): MutableLiveData<List<Rank>> {
         val responseRankData: MutableLiveData<List<Rank>> = MutableLiveData()
         val rankRequest = hangmanApi.getRank()
         rankRequest.enqueue(object : Callback<RankResponse> {
@@ -49,12 +49,13 @@ class HangmanApiFetchr {
         return responseRankData
     }
 
-    fun getMyRank(userName: String): LiveData<MyRank> {
+    fun getMyRank(userName: String): MutableLiveData<MyRank> {
         val responseRankData: MutableLiveData<MyRank> = MutableLiveData()
         val rankRequest = hangmanApi.getMyRank(userName)
+        Log.d(TAG,"username:{$userName}")
         rankRequest.enqueue(object : Callback<MyRank> {
             override fun onResponse(call: Call<MyRank>, response: Response<MyRank>) {
-                Log.d(TAG, "response:${response.body()} ${response.code()}")
+                Log.d(TAG, "my rank response:${response.body()} ${response.code()}")
 
                 if (response.code() == MY_RANK_NOT_EXIST) {
                     responseRankData.value = MyRank(userName, MY_RANK_NOT_EXIST)
@@ -117,22 +118,7 @@ class HangmanApiFetchr {
             }
         })
     }
-    fun getWordList(wordList:ArrayList<Word>) {
-        val service=hangmanApi.getWord()
 
-        service.enqueue(object : Callback<WordBody> {
-            override fun onResponse(call: Call<WordBody>, response: Response<WordBody>) {
-                if(response.isSuccessful){
-                    wordList += response.body()!!.word as ArrayList<Word>
-                    //word update작업 필요 - GamActivity에서 observer 달아서 해주기
-                }
-            }
-
-            override fun onFailure(call: Call<WordBody>, t: Throwable) {
-
-            }
-        })
-    }
 
     fun getAnswerList(wordList : MutableLiveData<ArrayList<Word>>) {
         val service = hangmanApi.getWord()

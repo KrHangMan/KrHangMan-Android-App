@@ -22,11 +22,11 @@ interface HangmanApi {
         @Path("user_name") user_name: String
     ): Call<MyRank>
 
-    @GET("api/words/")
+    @GET("/api/words/")
     fun getWord(): Call<WordBody>
 
     @FormUrlEncoded
-    @PATCH("users/{userName}")
+    @PATCH("/api/users/{userName}")
     fun patchRank(
         @Path("userName") userName: String,
         @Field("correct_cnt") cnt: Int
