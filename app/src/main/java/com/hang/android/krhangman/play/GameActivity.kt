@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hang.android.krhangman.api.HangmanApiFetchr
@@ -34,7 +35,9 @@ class GameActivity: AppCompatActivity() {
 
     private val inputWords = Array(MAX_ATTEMPT) { InputWord() }
     private val adapter = WordRecyclerAdapter(inputWords)
-    private val viewModel = GameActivityViewModel()
+    private val viewModel :GameActivityViewModel by lazy {
+        ViewModelProvider(this)[GameActivityViewModel::class.java]
+    }
 
     private var isCalling = false
 
