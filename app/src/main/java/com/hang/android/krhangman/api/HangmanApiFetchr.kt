@@ -1,7 +1,6 @@
 package com.hang.android.krhangman.api
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hang.android.krhangman.Body
 import com.hang.android.krhangman.Word
@@ -49,8 +48,7 @@ class HangmanApiFetchr {
         return responseRankData
     }
 
-    fun getMyRank(userName: String): MutableLiveData<MyRank> {
-        val responseRankData: MutableLiveData<MyRank> = MutableLiveData()
+    fun getMyRank(userName: String, setMyRank:(MyRank)-> Unit){
         val rankRequest = hangmanApi.getMyRank(userName)
         Log.d(TAG,"username:{$userName}")
         rankRequest.enqueue(object : Callback<MyRank> {
@@ -58,10 +56,10 @@ class HangmanApiFetchr {
                 Log.d(TAG, "my rank response:${response.body()} ${response.code()}")
 
                 if (response.code() == MY_RANK_NOT_EXIST) {
-                    responseRankData.value = MyRank(userName, MY_RANK_NOT_EXIST)
+                    setMyRank(MyRank(userName, MY_RANK_NOT_EXIST))
                 } else {
                     val rankResponse = response.body()
-                    responseRankData.value = rankResponse
+                    setMyRank(rankResponse!!)
                 }
 
             }
@@ -72,7 +70,7 @@ class HangmanApiFetchr {
 
         })
 
-        return responseRankData
+
     }
 
 

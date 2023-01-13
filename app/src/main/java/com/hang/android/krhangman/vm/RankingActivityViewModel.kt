@@ -1,7 +1,5 @@
 package com.hang.android.krhangman.vm
 
-import androidx.databinding.BaseObservable
-import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,15 +16,15 @@ class RankingActivityViewModel : ViewModel() {
     var rankList: MutableLiveData<List<Rank>> =MutableLiveData(emptyList())
 
 
-    var myRank: MutableLiveData<MyRank> = MutableLiveData()
-    set(value){
-        field = value
-        myRank.postValue(value.value)
-    }
+    private val _myRank: MutableLiveData<MyRank> = MutableLiveData()
+    val myRank:LiveData<MyRank> =_myRank
 
 
     init {
-        myRank=HangmanApiFetchr.get().getMyRank(DBRepository.get().getUser().nickname)
+
+        HangmanApiFetchr.get().getMyRank(DBRepository.get().getUser().nickname){
+            _myRank.postValue(it)
+        }
         rankList=HangmanApiFetchr.get().getRank()
     }
 

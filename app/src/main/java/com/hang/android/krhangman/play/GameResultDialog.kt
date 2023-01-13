@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import com.hang.android.krhangman.api.HangmanApiFetchr
 import com.hang.android.krhangman.databinding.DialGameResultBinding
+import com.hang.android.krhangman.db.DBRepository
 import com.hang.android.krhangman.model.User
 
 
@@ -29,6 +30,7 @@ class GameResultDialog(context: Context, isCorrect: Boolean, word: Word, user: U
             }
 
             btnHome.setOnClickListener {
+                DBRepository.get().updateScore(user)
                 HangmanApiFetchr.get().patchRank(user)
                 dismiss()
                 (context as Activity).finish()
