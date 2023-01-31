@@ -14,7 +14,7 @@
 
 ## Screenshots
 <p align="center">
-  <img src="![Screenshot_20230118_075343_hangman](https://user-images.githubusercontent.com/55792553/215742585-347f43db-8e2d-490f-b668-c5f444781b02.jpg)" 
+  <img src=![Screenshot_20230118_075343_hangman](https://user-images.githubusercontent.com/55792553/215742585-347f43db-8e2d-490f-b668-c5f444781b02.jpg)
        width="250">
   <img src="![Screenshot_20230118_075405_hangman](https://user-images.githubusercontent.com/55792553/215742686-66a31eea-71ac-4ff5-9266-abfe1880723a.jpg)"
        width="250">
