@@ -1,5 +1,10 @@
 # Hangman Game - Android App
 
+## Contributor
+[ChanwooAn](https://github.com/ChanwooAn) - initial page, login page, main page, rank page
+[paul9590](https://github.com/paul9590)- game play page.
+
+
 ## Tools and Technologies Used
 - Kotlin
 - Retrofit
