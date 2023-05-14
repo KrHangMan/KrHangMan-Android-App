@@ -12,8 +12,6 @@
 - Room API
 - coroutine
 
-## Architecture Pattern
-- MVVM (Model-View-ViewModel) pattern을 준수하려고 노력했습니다.
 
 ## Description
 행맨 게임 처럼 낱말에 대한 힌트를 얻으며 단어를 추측하여 정답을 맞추는 게임입니다.
